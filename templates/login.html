@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% block conteudo %}
+<div align="center">
+{% if form.errors %}
+<p>Seu login e senha estão incorretos. Por favor tente novamente.</p>
+{% endif %}
+    <form action="." method="post">{% csrf_token %}
+        <table>
+            <tr>
+                <td> {{ form.username.label_tag }} </td>
+                <td> {{ form.username }} </td>
+            </tr>
+            <tr>
+                 <td> {{ form.password.label_tag }} </td>
+                 <td> {{ form.password }} </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit" class="sb">Login</button>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+</div>
+{% endblock %}

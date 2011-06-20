@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+{% block titulo %}
+    <h2 align="center">Card&aacute;pios</h2>
+{% endblock %}
+{% block conteudo %}
+    {% if cardapios %}
+        <table width="100%">
+            <tr>
+                <td width="3%" nowrap="nowrap">
+                    Op&ccedil;&otilde;es
+                </td>
+                <td>
+                    Nome
+                </td>
+                <td width="3%" nowrap="nowrap">
+                    Data de Atribui&ccedil;&atilde;o
+                </td>
+            </tr>
+            {% for cardapio in cardapios %}
+                <tr>
+                    <td nowrap="nowrap">
+                        <a href="/visualizarReceita/{{ cardapio.cardapio.pk }}">Ver Receitas</a>
+                    </td>
+                    <td align="left">
+                        {{ cardapio.cardapio }}
+                    </td>
+                    <td>
+                        {{ cardapio.data|date }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <b>Nenhum cardápio escolhido.</b>
+    {% endif %}
+{% endblock %}

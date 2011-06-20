@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+{% block titulo %}
+    <h4 style="float: left;"><a href="/"><-- Voltar</a></h4>
+    <h2 align="center">Receitas do {{ cardapio.nome }}</h2>
+{% endblock %}
+{% block conteudo %}
+    {% if receitas %}
+        <table width="100%">
+            {% for receita in receitas %}
+                <tr>
+                    <td width="33%">
+                        <b>Nome</b>
+                    </td>
+                    <td width="33%">
+                        <b>Tipo</b>
+                    </td>
+                    <td width="33%">
+                        <b>Qtd. de Calorias</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{ receita.nome }}
+                    </td>
+                    <td>
+                        {{ receita.tipo_full }}
+                    </td>
+                    <td>
+                        {{ receita.quantidadeDeCalorias }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <b>Modo de Preparo</b>
+                    </td>
+                    <td colspan="1">
+                        <b>Ingredientes</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {{ receita.mododepreparo }}
+                    </td>
+                    <td colspan="1" nowrap="nowrap" width="50%" align="left">
+                        {% for ingrediente in receita.itensreceita_set.all %}
+                            {{ ingrediente.quantidade }} {{ ingrediente.unidade|upper }} - {{ ingrediente }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <hr>
+                        <hr>
+                    </td>
+                <tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

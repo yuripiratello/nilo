@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block conteudo %}
+<form method="post" action='/alterarSenha/'>{% csrf_token %}
+    <table align="center">
+        {{ form }}
+    </table>
+    <input type="submit" value="Alterar" name="Alterar">
+</form>
+{% endblock %}
